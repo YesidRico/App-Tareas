@@ -1,0 +1,37 @@
+@import "https://fonts.googleapis.com/css?family=Indie+Flower";
+/*
+.list-task,.actions-task,.actions{
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+.actions-task{
+
+    height: 40px;
+    padding: 20px;
+    margin-bottom: 1em;
+    background-color: #FF404C;
+}
+
+ul>li{
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    padding: 10px;
+}
+*/
+
+.list-task{
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    height: 500px;    
+}
+
+.title{
+    margin: 1rem;
+    font-family: 'Indie Flower', cursive;
+    font-size: 80px;
+    text-align: center;
+}

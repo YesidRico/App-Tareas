@@ -1,0 +1,101 @@
+<h3 class="sub-title">Listado de tareas</h3>
+<div class="row">
+    <div class="col-md-1" *ngIf="!nuevaTarea">
+        <button class="btn btn-primary" (click)="MostrarForm(true)">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="col-md-1" *ngIf="nuevaTarea">
+        <button class="btn btn-danger" (click)="MostrarForm(false)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-secondary">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="col-md-4">
+        <input type="text" class="search form-control form-control-sm" placeholder="Buscar a criterio...">
+    </div>
+</div>
+<form class="text" #formTarea="ngForm" (ngSubmit)="nueva_tarea(); formTarea.reset()" *ngIf="nuevaTarea">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" [(ngModel)]="tarea.name" class="form-control form-control-sm" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+
+                <label for="categoria">Categoría</label>
+                <select name="categoria" id="categoria" [(ngModel)]="tarea.category" class="form-control form-control-sm" required>
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Estudio">Estudio</option>
+                    <option value="Hogar">Hogar</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+
+                <label for="prioridad">Prioridad</label>
+                <select name="prioridad" id="prioridad" [(ngModel)]="tarea.priority" class="form-control form-control-sm" required>
+                    <option value="Muy Alta">Muy Alta</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Media</option>
+                    <option value="Baja">Baja</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea name="descripcion" id="descripcion" [(ngModel)]="tarea.description" class="form-control form-control-sm" required></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <button type="submit" style="float: right" class="btn btn-primary">Guardar Tarea</button>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <table class="table">
+        <thead class="text">
+            <th>Tarea</th>
+            <th>Categoría</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Ver</th>
+        </thead>
+        <tbody *ngIf="!tareas.length">
+            <tr>
+                <td colspan="5" class="text">EN VERDAD ERES UN DESOCUPADO :P</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="tareas.length">
+            <tr *ngFor="let t of tareas" class="text">
+                <td>{{t.name}}</td>
+                <td>{{t.category}}</td>
+                <td [ngSwitch]="t.priority">
+                    <span *ngSwitchCase="'Alta'" class="badge badge-warning">{{t.priority}}</span>
+                    <span *ngSwitchCase="'Muy Alta'" class="badge badge-danger">{{t.priority}}</span>
+                    <span *ngSwitchCase="'Media'" class="badge badge-primary">{{t.priority}}</span>
+                    <span *ngSwitchCase="'Baja'" class="badge badge-ligth">{{t.priority}}</span>
+                </td>
+                <td>{{t.state}}</td>
+                <td>
+                    <a routerLink="/detalle-tarea/{{t._id}}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

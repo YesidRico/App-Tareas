@@ -1,0 +1,67 @@
+<h3 class="sub-title">Detalle</h3>
+<div class="container">
+    <form #formDetalle="ngForm" class="text">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="name">Nombres</label>
+                    <input type="text" name="name" class="form-control form-control-sm" [(ngModel)]="tarea.name">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select name="category" id="category" [(ngModel)]="tarea.category" class="form-control form-control-sm">
+                        <option *ngFor="let c of categories" [value]="c.value">{{c.category}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="priority">Prioridad</label>
+                    <select name="priority" id="priority" [(ngModel)]="tarea.priority" class="form-control form-control-sm">
+                        <option *ngFor="let p of priorities" [value]="p.value">{{p.priority}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="state">Estado</label>
+                    <select name="state" id="state" [(ngModel)]="tarea.state" class="form-control form-control-sm">
+                        <option *ngFor="let s of states" [value]="s.value">{{s.state}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea name="description" id="description" class="form-control" [(ngModel)]="tarea.description"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <button class="btn btn-secondary" (click)="goBack()">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-success" (click)="modificar_tarea()">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-md-1" style="float: right">
+                <button class="btn btn-danger" (click)="eliminar_tarea()">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-md-4" *ngIf="message">
+                <div class="alert alert-success">
+                    <span>{{message}}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
